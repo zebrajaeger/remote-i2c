@@ -74,12 +74,3 @@ class HttpI2C extends I2CBase {
 }
 
 module.exports = {HardwareI2C, HttpI2C}
-
-// let c = new HttpI2C('http://192.168.178.69:8080');
-// setInterval(() => {
-//
-//     c.readAsHex(0x30, 4).then(x => {
-//         // console.log(x.readInt16LE(0));
-//         console.log(x.substr(0,4));
-//     });
-// }, 1000)

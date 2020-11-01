@@ -1,17 +1,22 @@
 {
   "name": "@zebrajaeger/remote-i2c",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Access i²C over http for development purpose",
   "homepage": "https://github.com/zebrajaeger/remote-i2c",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/zebrajaeger/remote-i2c.git"
+    "type": "git",
+    "url": "https://github.com/zebrajaeger/remote-i2c.git"
   },
   "main": "src/client.js",
   "scripts": {
     "deploy": "npm publish --access public"
   },
-  "keywords": ["I²C","I2C", "Raspberry PI", "http"],
+  "keywords": [
+    "I²C",
+    "I2C",
+    "Raspberry PI",
+    "http"
+  ],
   "author": "Lars Brandt",
   "license": "MIT",
   "dependencies": {
