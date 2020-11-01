@@ -45,7 +45,7 @@ const {HardwareI2C, HttpI2C} = require('../src/client');
 //const i2c = new HardwareI2C(1); // on raspberry pi, we use i2c-bus #1
 
 // for remote execution use this one
-const i2c = new HttpI2C('192.168.178.69', 8080); // on raspberry pi, we use i2c-bus #1
+const i2c = new HttpI2C('192.168.178.69', 8080); // remote raspberry pi
 
 (async () => {
     try {
