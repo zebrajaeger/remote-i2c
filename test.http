@@ -1,0 +1,15 @@
+POST http://localhost:8080/?address=0x31
+Content-Type: application/octet-stream
+
+affe
+
+###
+GET http://localhost:8080/?address=0x30&count=4
+
+### FAIL
+GET http://192.168.178.69:8080/?address=0&count=4
+
+###
+GET http://192.168.178.69:8080/?address=0x30&count=4
+
+###
