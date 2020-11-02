@@ -30,6 +30,7 @@
   },
   "bin": {
     "i2c-server": "./src/cli-server.js",
-    "i2c-client": "./src/cli-i2c.js"
+    "i2c-read": "./src/cli-i2c-read.js",
+    "i2c-write": "./src/cli-i2c-write.js"
   }
 }
