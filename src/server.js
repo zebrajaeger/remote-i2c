@@ -54,7 +54,7 @@ class I2CServer {
                         if (this.verbose) {
                             console.log(`  ok, '${byteCount}' Bytes were written`)
                         }
-                        res.status(200);
+                        res.sendStatus(200);
                     })
                     .catch(err => {
                         if (this.verbose) {

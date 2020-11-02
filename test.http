@@ -1,7 +1,7 @@
 ### Local OK
 GET http://localhost:8080/read?address=0x30&count=4
 
-### Local WRITE ??
+### Local WRITE
 GET http://localhost:8080/write?address=0x27&data=ff
 
 ### PI READ FAIL
@@ -9,6 +9,9 @@ GET http://192.168.178.69:8080/read?address=0&count=4
 
 ### PI READ OK
 GET http://192.168.178.69:8080/read?address=0x30&count=4
+
+### PI READ FROM PCF8574
+GET http://192.168.178.69:8080/read?address=0x27&count=1
 
 ### PI WRITE TO PCF8574
 GET http://192.168.178.69:8080/write?address=0x27&data=ff
