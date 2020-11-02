@@ -1,6 +1,6 @@
 const express = require('express');
 const {parseNumber} = require('./util');
-const {HardwareI2C} = require('./client');
+const {HardwareI2C} = require('./i2c');
 
 class I2CServer {
     constructor(host, port, busNumber) {
@@ -19,7 +19,13 @@ class I2CServer {
                         res.status(500).send(`${err}`);
                     })
             } else {
-                res.status(400).send('count or address missing');
+                if(address === null && count === null){
+                    res.status(400).send('count and address are missing');
+                }else if(address === null){
+                    res.status(400).send('address is missing');
+                }else{
+                    res.status(400).send('count is missing');
+                }
             }
         });
 
@@ -27,8 +33,11 @@ class I2CServer {
             let address = parseNumber(req.query.address);
             if (address !== null) {
                 const data = Buffer.from(req.body.toString(), 'hex');
-                // TODO WRITE DATA TO i2c
-                res.status(200);
+                i2c.write(address, data)
+                    .then(bytes => res.status(200))
+                    .catch(err => {
+                        res.status(500).send(`${err}`);
+                    })
             } else {
                 res.status(400).send('address missing');
             }

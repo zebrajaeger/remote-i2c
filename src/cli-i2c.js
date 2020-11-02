@@ -2,7 +2,7 @@
 
 const {program} = require('commander');
 
-const {HttpI2C} = require('./client');
+const {HttpI2C} = require('./i2c');
 
 program.option('-p, --port <port>', 'Port for send request to', '8080');
 program.option('-h, --host <hostname>', 'Host for send request to', 'localhost');

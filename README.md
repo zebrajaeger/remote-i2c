@@ -4,8 +4,6 @@
 
 Transparent connection to local i2c-bus or remote i2c-bus via http rest interface.
 
-!Not finished yet! Only read access available
-
 ## Start Server from commandline
 
 ```bash
