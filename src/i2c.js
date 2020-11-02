@@ -6,6 +6,11 @@ class I2CBase {
         return this.read(address, count)
             .then(buffer => buffer.toString('hex'));
     }
+
+    async writeAsHex(address, data) {
+        const buffer = Buffer.from(data, 'hex');
+        return this.write(address, buffer);
+    }
 }
 
 class HardwareI2C extends I2CBase {
@@ -65,7 +70,20 @@ class HttpI2C extends I2CBase {
 
     async read(address, count) {
         this.checkAddress(address);
-        const url = `http://${this.host}:${this.port}/?address=${address}&count=${count}`;
+        const url = `http://${this.host}:${this.port}/read?address=${address}&count=${count}`;
+        return fetch(url)
+            .then(res => {
+                if (res.status !== 200) {
+                    throw new Error(`${res.status} ${res.statusText}`);
+                }
+                return res.text()
+            })
+            .then(text => Buffer.from(text, 'hex'));
+    }
+
+    async write(address, buffer) {
+        this.checkAddress(address);
+        const url = `http://${this.host}:${this.port}/write?address=${address}&count=${count}`;
         return fetch(url)
             .then(res => {
                 if (res.status !== 200) {
@@ -130,7 +148,7 @@ class ReadDataBuffer {
 
     readUInt32LE() {
         this.checkSize(4);
-        const result = this._buffer.readUInt32LE();
+        const result = this._buffer.#readUInt32LE();
         this._index += 4;
         return result;
     };
@@ -305,6 +323,5 @@ class WriteDataBuffer {
         this._buffers.push(buffer);
     }
 }
-
 
 module.exports = {HardwareI2C, HttpI2C, ReadDataBuffer, WriteDataBuffer}

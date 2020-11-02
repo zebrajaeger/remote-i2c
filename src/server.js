@@ -7,9 +7,9 @@ class I2CServer {
         const i2c = new HardwareI2C(busNumber);
 
         const app = express();
-        app.use(express.raw());
+        //app.use(express.raw());
 
-        app.get('/', (req, res) => {
+        app.get('/read', (req, res) => {
             let address = parseNumber(req.query.address);
             let count = parseNumber(req.query.count);
             if (address !== null && count !== null) {
@@ -29,17 +29,23 @@ class I2CServer {
             }
         });
 
-        app.post('/', (req, res) => {
+        app.get('/write', (req, res) => {
             let address = parseNumber(req.query.address);
-            if (address !== null) {
-                const data = Buffer.from(req.body.toString(), 'hex');
-                i2c.write(address, data)
+            let data = parseNumber(req.query.data);
+            if (address !== null && data !==null) {
+                i2c.writeAsHex(address, data)
                     .then(() => res.status(200))
                     .catch(err => {
                         res.status(500).send(`${err}`);
                     })
             } else {
-                res.status(400).send('address missing');
+                if(address === null && data === null){
+                    res.status(400).send('data and address are missing');
+                }else if(address === null){
+                    res.status(400).send('address is missing');
+                }else{
+                    res.status(400).send('data is missing');
+                }
             }
         });
 
