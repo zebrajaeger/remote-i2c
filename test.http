@@ -1,6 +1,9 @@
 ### Local OK
 GET http://localhost:8080/read?address=0x30&count=4
 
+### Local WRITE ??
+GET http://localhost:8080/write?address=0x30&data=0102030405
+
 ### PI READ FAIL
 GET http://192.168.178.69:8080/read?address=0&count=4
 

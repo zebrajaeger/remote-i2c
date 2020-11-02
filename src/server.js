@@ -31,7 +31,7 @@ class I2CServer {
 
         app.get('/write', (req, res) => {
             let address = parseNumber(req.query.address);
-            let data = parseNumber(req.query.data);
+            let data = req.query.data;
             if (address !== null && data !==null) {
                 i2c.writeAsHex(address, data)
                     .then(() => res.status(200))
