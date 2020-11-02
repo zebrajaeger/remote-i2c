@@ -1,15 +1,11 @@
-POST http://localhost:8080/?address=0x31
-Content-Type: application/octet-stream
+### Local OK
+GET http://localhost:8080/read?address=0x30&count=4
 
-affe
+### PI READ FAIL
+GET http://192.168.178.69:8080/read?address=0&count=4
 
-###
-GET http://localhost:8080/?address=0x30&count=4
+### PI READ OK
+GET http://192.168.178.69:8080/read?address=0x30&count=4
 
-### FAIL
-GET http://192.168.178.69:8080/?address=0&count=4
-
-###
-GET http://192.168.178.69:8080/?address=0x30&count=4
-
-###
+### PI WRITE ??
+GET http://192.168.178.69:8080/write?address=0x30&data=0102030405
