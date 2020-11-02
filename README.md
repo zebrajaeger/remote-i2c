@@ -20,8 +20,8 @@ Options:
 ## Use Client from commandline
 
 ```bash
-$ i2c-client --help
-Usage: i2c-client [options]
+$ i2c-read --help
+Usage: i2c-read [options]
 
 Options:
   -p, --port <port>        Port for send request to (default: "8080")
