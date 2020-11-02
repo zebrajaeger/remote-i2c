@@ -14,6 +14,8 @@ class I2CServer {
         app.get('/read', (req, res) => {
             let address = parseNumber(req.query.address);
             let count = parseNumber(req.query.count);
+
+            // TODO check for null and undefined
             if (address !== null && count !== null) {
                 if (this.verbose) {
                     console.log(`read from bus '${busNumber}' at address '${address}' '${count}' bytes`);
@@ -32,6 +34,7 @@ class I2CServer {
                         res.status(500).send(`${err}`);
                     })
             } else {
+                // TODO check for null and undefined
                 if (address === null && count === null) {
                     res.status(400).send('count and address are missing');
                 } else if (address === null) {
@@ -45,6 +48,8 @@ class I2CServer {
         app.get('/write', (req, res) => {
             let address = parseNumber(req.query.address);
             let data = req.query.data;
+
+            // TODO check for null and undefined
             if (address !== null && data !== null) {
                 if (this.verbose) {
                     console.log(`write to bus '${busNumber}' at address '${address}' value '${data}'`)
@@ -63,6 +68,7 @@ class I2CServer {
                         res.status(500).send(`${err}`);
                     })
             } else {
+                // TODO check for null and undefined
                 if (address === null && data === null) {
                     res.status(400).send('data and address are missing');
                 } else if (address === null) {
