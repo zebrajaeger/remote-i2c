@@ -15,7 +15,7 @@ class I2CServer {
             let address = parseNumber(req.query.address);
             let count = parseNumber(req.query.count);
 
-            if (this.isOneOrMoreEmpty(address, count)) {
+            if (this.areAllSet(address, count)) {
                 if (this.verbose) {
                     console.log(`read from bus '${busNumber}' at address '${address}' '${count}' bytes`);
                 }
@@ -47,7 +47,7 @@ class I2CServer {
             let address = parseNumber(req.query.address);
             let data = req.query.data;
 
-            if (this.isOneOrMoreEmpty(address, data)) {
+            if (this.areAllSet(address, data)) {
                 if (this.verbose) {
                     console.log(`write to bus '${busNumber}' at address '${address}' value '${data}'`)
                 }
@@ -80,12 +80,19 @@ class I2CServer {
         });
     }
 
+    areAllSet(...value) {
+        return value.filter(v => this.isEmpty(v)).length === 0;
+    }
     areAllEmpty(...value) {
-        return value.filter(v => !this.isEmpty(v)).length === 0;
+        return value.filter(v => this.isSet(v)).length === 0;
     }
 
     isOneOrMoreEmpty(...value) {
         return value.filter(v => this.isEmpty(v)).length > 0;
+    }
+
+    isSet(value) {
+        return !this.isEmpty(value);;
     }
 
     isEmpty(value) {
