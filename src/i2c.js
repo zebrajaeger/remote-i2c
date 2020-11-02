@@ -148,7 +148,7 @@ class ReadDataBuffer {
 
     readUInt32LE() {
         this.checkSize(4);
-        const result = this._buffer.#readUInt32LE();
+        const result = this._buffer.readUInt32LE();
         this._index += 4;
         return result;
     };
