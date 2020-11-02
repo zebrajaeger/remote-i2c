@@ -1,6 +1,6 @@
 {
   "name": "@zebrajaeger/remote-i2c",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Access i²C over http for development purpose",
   "homepage": "https://github.com/zebrajaeger/remote-i2c",
   "repository": {
