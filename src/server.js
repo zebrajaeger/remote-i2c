@@ -89,7 +89,7 @@ class I2CServer {
     }
 
     isEmpty(value) {
-        return (value == null || value.length === 0);
+        return (value === null || value === undefined);
     }
 
     set verbose(verbose) {
