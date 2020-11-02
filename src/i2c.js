@@ -83,7 +83,7 @@ class HttpI2C extends I2CBase {
 
     async write(address, buffer) {
         this.checkAddress(address);
-        const url = `http://${this.host}:${this.port}/write?address=${address}&count=${count}`;
+        const url = `http://${this.host}:${this.port}/write?address=${address}&data=${buffer.toString('hex')}`;
         return fetch(url)
             .then(res => {
                 if (res.status !== 200) {

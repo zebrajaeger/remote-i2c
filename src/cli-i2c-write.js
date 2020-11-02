@@ -12,6 +12,6 @@ program.parse(process.argv);
 
 let client = new HttpI2C(program.host, parseInt(program.port));
 client
-    .readAsHex(parseInt(program.address), parseInt(program.count))
+    .writeAsHex(parseInt(program.address), program.data)
     .then(hex => console.log(hex))
     .catch(err=>console.log(err.toString()));
