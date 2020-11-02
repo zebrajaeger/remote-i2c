@@ -16,7 +16,7 @@ class I2CServer {
             let count = parseNumber(req.query.count);
             if (address !== null && count !== null) {
                 if (this.verbose) {
-                    console.log(`read from bus '${busNumber}' at address '${address}' '${count}' Bytes: '${hex}`);
+                    console.log(`read from bus '${busNumber}' at address '${address}' '${count}' bytes`);
                 }
                 i2c.readAsHex(address, count)
                     .then(hex => {
