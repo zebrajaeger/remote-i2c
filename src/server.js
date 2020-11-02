@@ -34,7 +34,7 @@ class I2CServer {
             if (address !== null) {
                 const data = Buffer.from(req.body.toString(), 'hex');
                 i2c.write(address, data)
-                    .then(bytes => res.status(200))
+                    .then(() => res.status(200))
                     .catch(err => {
                         res.status(500).send(`${err}`);
                     })
