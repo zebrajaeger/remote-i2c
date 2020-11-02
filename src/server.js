@@ -3,6 +3,8 @@ const {parseNumber} = require('./util');
 const {HardwareI2C} = require('./i2c');
 
 class I2CServer {
+    _verbose;
+
     constructor(host, port, busNumber) {
         const i2c = new HardwareI2C(busNumber);
 
@@ -13,8 +15,14 @@ class I2CServer {
             let address = parseNumber(req.query.address);
             let count = parseNumber(req.query.count);
             if (address !== null && count !== null) {
+
                 i2c.readAsHex(address, count)
-                    .then(hex => res.send(hex))
+                    .then(hex => {
+                        if(this.verbose){
+                            console.log(`read from bus '${busNumber}' at address '${address}' '${count}' Bytes: '${hex}`);
+                        }
+                        res.send(hex)
+                    })
                     .catch(err => {
                         res.status(500).send(`${err}`);
                     })
@@ -33,6 +41,9 @@ class I2CServer {
             let address = parseNumber(req.query.address);
             let data = req.query.data;
             if (address !== null && data !==null) {
+                if(this.verbose){
+                    console.log(`write to bus '${busNumber}' at address '${address}' value '${data}'`)
+                }
                 i2c.writeAsHex(address, data)
                     .then(() => res.status(200))
                     .catch(err => {
@@ -52,6 +63,14 @@ class I2CServer {
         app.listen(port, host, () => {
             console.log(`Listening at http://${host}:${port}`)
         });
+    }
+
+    set verbose(verbose){
+        this._verbose = verbose===true;
+    }
+
+    get verbose(){
+        return this._verbose;
     }
 }
 
