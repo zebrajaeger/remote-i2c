@@ -116,7 +116,7 @@ class ReadDataBuffer {
     }
 
     available() {
-        return this.buffer.length - this._index;
+        return this._buffer.length - this._index;
     }
 
     checkSize(bytesNeeded) {
@@ -127,84 +127,84 @@ class ReadDataBuffer {
 
     readUInt8() {
         this.checkSize(1);
-        const result = this._buffer.readUInt8();
+        const result = this._buffer.readUInt8(this._index);
         this._index += 1;
         return result;
     };
 
     readUInt16LE() {
         this.checkSize(2);
-        const result = this._buffer.readUInt16LE();
+        const result = this._buffer.readUInt16LE(this._index);
         this._index += 2;
         return result;
     }
 
     readUInt16BE() {
         this.checkSize(2);
-        const result = this._buffer.readUInt16BE();
+        const result = this._buffer.readUInt16BE(this._index);
         this._index += 1;
         return result;
     };
 
     readUInt32LE() {
         this.checkSize(4);
-        const result = this._buffer.readUInt32LE();
+        const result = this._buffer.readUInt32LE(this._index);
         this._index += 4;
         return result;
     };
 
     readUInt32BE() {
         this.checkSize(4);
-        const result = this._buffer.readUInt32BE();
+        const result = this._buffer.readUInt32BE(this._index);
         this._index += 4;
         return result;
     };
 
     readInt8() {
         this.checkSize(1);
-        const result = this._buffer.readInt8();
+        const result = this._buffer.readInt8(this._index);
         this._index += 1;
         return result;
     };
 
     readInt16LE() {
         this.checkSize(2);
-        const result = this._buffer.readInt16LE();
+        const result = this._buffer.readInt16LE(this._index);
         this._index += 2;
         return result;
     };
 
     readInt16BE() {
         this.checkSize(2);
-        const result = this._buffer.readInt16BE();
+        const result = this._buffer.readInt16BE(this._index);
         this._index += 2;
         return result;
     };
 
     readInt32LE() {
         this.checkSize(4)
-        const result = this._buffer.readInt32LE();
+        const result = this._buffer.readInt32LE(this._index);
         this._index += 4;
         return result;
     };
 
     readInt32BE() {
         this.checkSize(4);
-        const result = this._buffer.readInt32BE();
+        const result = this._buffer.readInt32BE(this._index);
         this._index += 4;
         return result;
     };
 
     readFloatLE() {
         this.checkSize(4);
-        const result = this._buffer.readFloatLE();
+        const result = this._buffer.readFloatLE(this._index);
         this._index += 4;
         return result;
     };
 
     readFloatBE() {
         this.checkSize(4);
-        const result = this._buffer.readFloatBE();
+        const result = this._buffer.readFloatBE(this._index);
         this._index += 4;
         return result;
     };
@@ -218,7 +218,7 @@ class ReadDataBuffer {
 
     readDoubleBE() {
         this.checkSize(8);
-        const result = this._buffer.readDoubleBE();
+        const result = this._buffer.readDoubleBE(this._index);
         this._index += 8;
         return result;
     };
